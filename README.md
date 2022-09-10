@@ -1,11 +1,11 @@
-# game-first (v1.1)
+# game-first (v1.2)
 2022.09.10
 
 
 
-## in this branch (v1.1)
+## in this branch (v1.2)
 
-* finish section 1
+* start section 2
 
 
 
