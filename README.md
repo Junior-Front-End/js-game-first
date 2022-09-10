@@ -1,11 +1,11 @@
 # game-first (v1.1)
-2022.09.09 
+2022.09.10
 
 
 
 ## in this branch (v1.1)
 
-* 
+* finish section 1
 
 
 
