@@ -1,11 +1,15 @@
 # game-first (v1.2)
 2022.09.10
 
+## branch guide
+* v1.0 start one
+* v1.1 finish one
+* v1.2 start two - 1:00:00 / 9h
 
 
 ## in this branch (v1.2)
 
-* start section 2
+* start section 2: parallax background
 
 
 

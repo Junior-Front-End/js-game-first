@@ -1,97 +1,36 @@
-
-let playerState = "run";
-const dropdown = document.getElementById("anim")
-dropdown.addEventListener("change", function(e){
-    playerState = e.target.value
-})
-
 const canvas = document.querySelector("#canvas1")
-const ctx = canvas.getContext("2d")
-const CANVAS_WIDTH = canvas.width = 600
-const CANVAS_HEIGHT = canvas.height = 600
+var ctx = canvas.getContext("2d")
 
-const playerImage = new Image();
-playerImage.src = 'shadow_dog.png'; 
-const spriteWidth = 575
-const spritHeight = 523
-let frameX = 0
-let frameY = 1
+var CANVAS_WIDTH = canvas.width = 800;
+var CANVAS_HEIGHT = canvas.height = 700;
 
 
-let gameFrame = 0
-const staggerFrames = 5;
-const spriteAnimations = [];
-const animationStates = [{
-    name: "idle",
-    frames: 7
-}, {
-    name: "jump",
-    frames: 7
-}, {
-    name: "fall",
-    frames: 9
-}, {
-    name: "run",
-    frames: 9
-}, {
-    name: "dizzy",
-    frames: 11
-}, {
-    name: "sit",
-    frames: 5
-}, {
-    name: "roll",
-    frames: 7
-}, {
-    name: "bite",
-    frames: 7
-}, {
-    name: "ko",
-    frames: 12
-}, {
-    name: "getHit",
-    frames: 4
-}];
+let gameSpeed = 15;
 
-animationStates.forEach((state, i) => {
-    let frames = {loc: []};
-    for (let j = 0; j < state.frames; j++) {
-        let positionX = j * spriteWidth;        
-        let positionY = i * spritHeight;      
-        frames.loc.push({x: positionX, y: positionY});  
-    }
-    spriteAnimations[state.name] = frames;
-});
+const backgroundLayer1 = new Image(); 
+backgroundLayer1.src = "layer-1.png"
+const backgroundLayer2 = new Image(); 
+backgroundLayer2.src = "layer-2.png"
+const backgroundLayer3 = new Image(); 
+backgroundLayer3.src = "layer-3.png"
+const backgroundLayer4 = new Image(); 
+backgroundLayer4.src = "layer-4.png"
+const backgroundLayer5 = new Image(); 
+backgroundLayer5.src = "layer-5.png"
 
-console.log(animationStates);
+let x = 0
+let x2 = 2400
 
+function animate( ) {
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    ctx.drawImage(backgroundLayer4, x, 0);
+    ctx.drawImage(backgroundLayer4, x2, 0);
+    if (x < -2400) x = 2400 + x2 - gameSpeed;
+    else x -= gameSpeed;
+    if (x2 < -2400) x2 = 2400 + x - gameSpeed;
+    else x2 -= gameSpeed;
 
-//
-function animate() {
+    requestAnimationFrame(animate)
+}
 
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].loc.length;
-    let frameX = spriteWidth * position;
-    let frameY = spriteAnimations[playerState].loc[position].y;
-
-    ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spritHeight, 0 , 0, spriteWidth, spritHeight);
-
-    if (gameFrame % staggerFrames == 0) {
-        if(frameX < 4) frameX++;
-        else frameX = 0; 
-    }
-
-    gameFrame++;
-
-    //
-    requestAnimationFrame(animate);
-
-};
-
-
-//
-animate();
-
-
-
-
+animate()
